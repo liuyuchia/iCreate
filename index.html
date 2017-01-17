@@ -43,33 +43,7 @@
 	</script>
     
     
-      <script>
-	var xmlhttp_1 = new XMLHttpRequest();
-	var url_1 = "https://emma.pixnet.cc/mainpage/blog/categories/hot/26?page=1&per_page=6&api_version=2&format=json";
 
-	xmlhttp_1.onreadystatechange = function() {
-		if (xmlhttp_1.readyState == 4 && xmlhttp_1.status == 200) {
-			var myArr_1 = JSON.parse(xmlhttp_1.responseText);
-			myFunction_1(myArr_1);
-		}
-	}
-	xmlhttp_1.open("GET", url_1, true);
-	xmlhttp_1.send();
-
-	function myFunction_1(arr_1) {
-		var data_1 = arr_1.articles;
-		var out_1 = "";
-		var i_1;
-		for (i_1 = 0; i_1 < data_1.length; i_1++) {
-			//if ( data[i].thumb != "" ) out += '<img src="' + data[i].thumb + '" />';
-			if ( data_1[i].title != "" ) out_1 += '<p><a href="' + data_1[i].link + '" target="_blank">' + data[i]_1.title + '</a></p>';
-			if ( data_1[i].address != "" ) out_1 += '<p>'+ data[i]_1.address+' </p>';
-			//out += '<p> </p>';
-			//out += '<br />';
-		}
-		document.getElementById("pixnet-food").innerHTML = out_1;
-	}
-	</script>
     
     <!-------痞客幫 parse end---------------------------------------------------------------------------------------->
     
@@ -310,7 +284,7 @@ function initAutocomplete() {
                       
                         
 						<section>
-							<a href="https://www.youtube.com/?gl=TW&hl=zh-tw" class="image"><img src="images/Youtube.jpg" alt="" data-position="center center" /></a>
+							<a href="https://www.youtube.com/?gl=TW&hl=zh-tw" class="image"><img src="images/youtube.jpg" alt="" data-position="center center" /></a>
 							<div class="content">
 								<div class="inner">
 									<h2>Youtube</h2>
