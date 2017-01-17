@@ -124,7 +124,7 @@ function initAutocomplete() {
   
     var panorama = new google.maps.StreetViewPanorama(
       document.getElementById('pano'), {
-        position:{ lat: -33.8688, lng: 151.2195 },
+        position: place.geometry.location,
         pov: {
           heading: 34,
           pitch: 10
