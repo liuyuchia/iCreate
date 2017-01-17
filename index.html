@@ -1,0 +1,445 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Hyperspace by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        
+   <!-- 痞客幫 Json 資料------------------------------------------------------------------------------------------->
+    <script>
+	var xmlhttp = new XMLHttpRequest();
+	var url = "https://emma.pixnet.cc/mainpage/blog/categories/hot/24?page=6&per_page=5&api_version=2&format=json";
+
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var myArr = JSON.parse(xmlhttp.responseText);
+			myFunction(myArr);
+		}
+	}
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+
+	function myFunction(arr) {
+		var data = arr.articles;
+		var out = "";
+		var i;
+		for (i = 0; i < data.length; i++) {
+			//if ( data[i].thumb != "" ) out += '<img src="' + data[i].thumb + '" />';
+			if ( data[i].title != "" ) out += '<p><a href="' + data[i].link + '" target="_blank">' + data[i].title + '</a></p>';
+			//out += '<p> </p>';
+			//out += '<br />';
+		}
+		document.getElementById("pixnet-stuff").innerHTML = out;
+	}
+	</script>
+    
+    
+      <script>
+	var xmlhttp_1 = new XMLHttpRequest();
+	var url_1 = "https://emma.pixnet.cc/mainpage/blog/categories/hot/26?page=1&per_page=6&api_version=2&format=json";
+
+	xmlhttp_1.onreadystatechange = function() {
+		if (xmlhttp_1.readyState == 4 && xmlhttp_1.status == 200) {
+			var myArr_1 = JSON.parse(xmlhttp_1.responseText);
+			myFunction_1(myArr_1);
+		}
+	}
+	xmlhttp_1.open("GET", url_1, true);
+	xmlhttp_1.send();
+
+	function myFunction_1(arr_1) {
+		var data_1 = arr_1.articles;
+		var out_1 = "";
+		var i_1;
+		for (i_1 = 0; i_1 < data_1.length; i_1++) {
+			//if ( data[i].thumb != "" ) out += '<img src="' + data[i].thumb + '" />';
+			if ( data_1[i].title != "" ) out_1 += '<p><a href="' + data_1[i].link + '" target="_blank">' + data[i]_1.title + '</a></p>';
+			if ( data_1[i].address != "" ) out_1 += '<p>'+ data[i]_1.address+' </p>';
+			//out += '<p> </p>';
+			//out += '<br />';
+		}
+		document.getElementById("pixnet-food").innerHTML = out_1;
+	}
+	</script>
+    
+    <!-------痞客幫 parse end---------------------------------------------------------------------------------------->
+    
+    
+    
+    
+    
+    <!-- google map 資料------------------------------------------------------------------------------------------->  
+    <script>
+// This example adds a search box to a map, using the Google Place Autocomplete
+// feature. People can enter geographical searches. The search box will return a
+// pick list containing a mix of places and predicted search terms.
+
+function initAutocomplete() {
+ var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -33.8688, lng: 151.2195},
+    zoom: 13,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  var markers = [];
+  // [START region_getplaces]
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
+
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      }));
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+  // [END region_getplaces]
+  
+  
+    var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position:{ lat: -33.8688, lng: 151.2195 },
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
+  
+}
+    </script>
+    
+     <script type="text/javascript">
+	function go_get(){
+		 var base_url = 'http://www.youtube.com/embed?listType=search&list=';
+		 var search_field = document.getElementById('yourtextfield').value;
+ 		var target_url = base_url + search_field;
+ 		var ifr = document.getElementById('youriframe');
+		 ifr.src = target_url;
+ 			return false;
+		}
+
+	</script>     
+    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
+         async defer>
+    </script>
+    
+    
+    
+   
+    
+<!-- google map 資料end------------------------------------------------------------------------------------------->      
+    
+    
+    
+    
+    
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map,#pano {
+		float:right;
+        height: 100%;
+		width:38.5%;
+      }
+.controls {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+    </style>
+    
+    <title>Places Searchbox</title>
+    <style>
+      #target {
+        width: 345px;
+      }
+    </style>
+    
+        
+        
+	</head>
+    
+    
+    
+    
+
+    
+	<body>
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Welcome</a></li>
+							<li><a href="#one">Who we make</a></li>
+							<li><a href="#two">What we enjoy</a></li>
+							
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+		<!-- Intro -->
+		<section id="intro" class="wrapper style1 fullscreen fade-up">
+			<div class="inner">
+				<h1>Final Homework</h1>
+				<p>Come on!! All Pass!!</p>
+				
+			</div>
+		</section>
+
+		<!-- One -->
+					<section id="one" class="wrapper style2 spotlights">
+						<section>
+						<a href="https://www.pixnet.net/" class="image"><img src="images/PIXNET.jpg" alt="" data-position="center center" /></a>
+							<div class="content">
+								<div class="inner">
+                                	<h2>數位生活</h2>
+                                    	
+                                    <div id="pixnet-stuff"> 
+                                	</div>
+	
+								<ul class="actions">
+									<li><a href="https://tech3c.pixnet.net/category/24" class="button">Learn more</a></li>
+                                   
+								</ul>
+                                    
+								</div>
+							</div>
+						</section>
+                        
+                      
+                        
+						<section>
+							<a href="https://www.youtube.com/?gl=TW&hl=zh-tw" class="image"><img src="images/Youtube.jpg" alt="" data-position="center center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Youtube</h2>
+                                    
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cGJyOxLTebg" frameborder="0" allowfullscreen></iframe>
+                                    
+                                    
+                              <form action="http://www.youtube.com/results"  >
+									<input name="search_query" type="text"   />
+									<input type="submit" value="Search in Youtube" />           
+							   </form>
+                                    
+                                    <form onsubmit="go_get(); return false;" >
+ 										<input type="text"  id="yourtextfield" />
+ 										<input type="submit" value="Search Playlists in Youtube" />
+									</form>
+
+									<iframe id="youriframe" width="560" height="315" ></iframe>
+                                    
+								
+								</div>
+							</div>
+						</section>
+                        
+                        
+                        
+                        
+	
+					</section>
+                    
+                    
+                    
+                    
+
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>What we enjoy</h2>
+							
+                            
+                            
+                            
+                            
+                                    
+							<div class="features">
+								<section>
+									<span class="icon major fa-code"></span>
+									<h3>清境農場</h3>
+									<p>霧上桃源，體驗清境農場之美，地處海拔1750公尺，空氣清新、林木蒼鬱、綠草如茵，徜徉在寬闊草原與景觀步道，令人流連忘返!</p>
+                                    <p>地址 : 546南投縣仁愛鄉仁和路170號</p>
+								</section>
+                                
+								<section>
+									<span class="icon major fa-lock"></span>
+									<h3>合歡山</h3>
+									<p>合歡山國家森林遊樂區位於花蓮縣與南投縣交界，海拔高2,300~3,400公尺，面積457.61公頃，是全臺最高之國家森林遊樂區，區內山勢陡峻，山峰與峻谷連綿，為合歡群峰及奇萊山串聯之中樞地區，也是登山活動的最佳地區</p>
+                                    <p>地址 : 546南投縣仁愛鄉</p>
+								</section>
+								<section>
+									<span class="icon major fa-cog"></span>
+									<h3>陽明山國家公園</h3>
+									<p>陽明山國家公園因受到緯度及海拔之影響，季風型氣候非常明顯，且本區地質構造特殊的錐狀或鐘狀火山體和火口湖等，形成火山活動的特殊景觀。</p>
+                                    
+                                    <p>地址 : 112台北市北投區</p>
+								</section>
+								<section>
+									<span class="icon major fa-desktop"></span>
+									<h3>玉山國家公園</h3>
+									<p>玉山國家公園面積居於臺灣中央，面積103,121公頃，園內高山崢嶸，以東北亞最高峰、海拔3,952公尺的玉山為首，共涵蓋全臺3分之1的名山峻嶺，連綿不絕的山頭怎麼望也望不完，真不愧是臺灣的屋脊。
+此區不只有高山，還包含古老的地層結構及斷崖、峭壁、峽谷等雄奇的地形，在降雨豐沛、森林繁盛的條件下，成為臺灣三大水系的搖籃。</p>
+									<p>地址 : 55344南投縣水里鄉中山路1段515號</p>
+								</section>
+								
+								
+							</div>
+							
+						</div>
+					</section>
+                   
+
+			</div>
+            
+            <section>
+            
+            </section>
+								
+            
+
+		<!-- Footer 
+			<footer id="footer" class="wrapper style1-alt">
+            
+            
+            
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>-->
+            
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    		<div id="pano"></div>
+    		<div id="map"></div>
+            
+            
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+            
+            
+            
+            
+   
+    
+    
+
+    
+    
+    
+	
+	
+            
+            
+
+	</body>
+</html>
