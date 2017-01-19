@@ -52,16 +52,19 @@
     
     
     <!-- google map 資料------------------------------------------------------------------------------------------->  
-    <script>
+<script>
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
 
 function initAutocomplete() {
+	
+	
  var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -33.8688, lng: 151.2195},
     zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP
+	
   });
  var panorama = new google.maps.StreetViewPanorama(
       document.getElementById('pano'), {
@@ -72,6 +75,8 @@ function initAutocomplete() {
         }
       });
   map.setStreetView(panorama); 
+  
+  
 
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
@@ -155,9 +160,552 @@ function initAutocomplete() {
         }
       });
   map.setStreetView(panorama);
-  
+   
 }
-    </script>
+
+</script>
+
+
+<script>
+
+function marker1() {
+	 var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 24.126213, lng: 120.673644},
+    zoom: 17,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+	
+  });
+  
+ var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: {lat: 24.126213, lng: 120.673644},
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama); 
+  
+  
+   // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  var markers = [];
+  var panorama;
+  
+  // [START region_getplaces]
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+	
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
+
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      }));
+	  
+	  
+	  var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: place.geometry.location,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
+  
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+  // [END region_getplaces]
+  
+ 
+    var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: place.geometry.location,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
+}
+
+</script>
+
+
+<script>
+
+function marker2() {
+	 var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 24.1262199, lng: 120.674236},
+    zoom: 17,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+	
+  });
+  
+ var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: {lat: 24.1262199, lng: 120.674236},
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama); 
+  
+  
+   // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  var markers = [];
+  var panorama;
+  
+  // [START region_getplaces]
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+	
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
+
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      }));
+	  
+	  
+	  var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: place.geometry.location,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
+  
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+  // [END region_getplaces]
+  
+ 
+    var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: place.geometry.location,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
+}
+
+</script>
+
+
+<script>
+
+function marker2() {
+	 var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 24.1264071, lng: 120.6758451},
+    zoom: 17,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+	
+  });
+  
+ var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: {lat: 24.1264071, lng:120.6758451},
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama); 
+  
+  
+   // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  var markers = [];
+  var panorama;
+  
+  // [START region_getplaces]
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+	
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
+
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      }));
+	  
+	  
+	  var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: place.geometry.location,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
+  
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+  // [END region_getplaces]
+  
+ 
+    var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: place.geometry.location,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
+}
+
+</script>
+
+
+<script>
+
+function marker3() {
+	 var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 24.1221505, lng: 120.6825561},
+    zoom: 17,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+	
+  });
+  
+ var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: {lat: 24.1221505, lng: 120.6825561},
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama); 
+  
+  
+   // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  var markers = [];
+  var panorama;
+  
+  // [START region_getplaces]
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+	
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
+
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      }));
+	  
+	  
+	  var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: place.geometry.location,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
+  
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+  // [END region_getplaces]
+  
+ 
+    var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: place.geometry.location,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
+}
+
+</script>
+
+
+<script>
+
+function marker4() {
+	 var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 24.1256805, lng:120.6758299},
+    zoom: 17,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+	
+  });
+  
+ var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: {lat: 24.1256805, lng:120.6758299},
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama); 
+  
+  
+   // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  var markers = [];
+  var panorama;
+  
+  // [START region_getplaces]
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+	
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
+
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      }));
+	  
+	  
+	  var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: place.geometry.location,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
+  
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+  // [END region_getplaces]
+  
+ 
+    var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: place.geometry.location,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
+      });
+  map.setStreetView(panorama);
+}
+
+</script>
+
+
     
      <script type="text/javascript">
 	function go_get(){
@@ -169,7 +717,10 @@ function initAutocomplete() {
  			return false;
 		}
 
-	</script>     
+	</script>   
+    
+    
+      
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBU2iFUO5YsvwoPtc1LIbaJbR7s-fAHPxE&libraries=places&callback=initAutocomplete"
          async defer>
     </script>
@@ -191,6 +742,7 @@ function initAutocomplete() {
         height: 100%;
         margin: 0;
         padding: 0;
+		font-family: Microsoft JhengHei;
       }
       #map,#pano {
 		float:right;
@@ -209,7 +761,7 @@ function initAutocomplete() {
 }
 
 #pac-input {
-  background-color: #fff;
+  background-color: #a9a9a9;
   font-family: Roboto;
   font-size: 15px;
   font-weight: 300;
@@ -228,7 +780,7 @@ function initAutocomplete() {
 }
 
 #type-selector {
-  color: #fff;
+  color: #c0c0c0;
   background-color: #4d90fe;
   padding: 5px 11px 0px 11px;
 }
@@ -252,11 +804,7 @@ function initAutocomplete() {
         
 	</head>
     
-    
-    
-    
 
-    
 	<body>
 
 		<!-- Sidebar -->
@@ -265,8 +813,9 @@ function initAutocomplete() {
 					<nav>
 						<ul>
 							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">Who we make</a></li>
-							<li><a href="#two">What we enjoy</a></li>
+							<li><a href="#one">Pixnet</a></li>
+                            <li><a href="#one-two">Youtube</a></li>
+							<li><a href="#two">Food in NCHU</a></li>
 							
 						</ul>
 					</nav>
@@ -274,21 +823,20 @@ function initAutocomplete() {
 			</section>
 
 		<!-- Wrapper -->
-			<div id="wrapper">
+	<div id="wrapper">
 
 		<!-- Intro -->
 		<section id="intro" class="wrapper style1 fullscreen fade-up">
 			<div class="inner">
 				<h1>Final Homework</h1>
-				<p>Come on!! All Pass!!</p>
-				
+				<p>Come on!! All Pass!!</p>			
 			</div>
 		</section>
-
+						<br />
 		<!-- One -->
 					<section id="one" class="wrapper style2 spotlights">
 						<section>
-						<a href="https://www.pixnet.net/" class="image"><img src="images/PIXNET.jpg" alt="" data-position="center center" /></a>
+<a href="https://www.pixnet.net/" class="image"><img src="images/PIXNET.jpg" alt="" data-position="center center" /></a>
 							<div class="content">
 								<div class="inner">
                                 	<h2>數位生活</h2>
@@ -304,82 +852,103 @@ function initAutocomplete() {
 								</div>
 							</div>
 						</section>
+                     </section>
+                     
+                     <br />
                         
                       
-                        
+                     <section id="one-two" class="wrapper style2 spotlights">   
 						<section>
-							<a href="https://www.youtube.com/?gl=TW&hl=zh-tw" class="image"><img src="images/youtube.jpg" alt="" data-position="center center" /></a>
+<a href="https://www.youtube.com/?gl=TW&hl=zh-tw" class="image"><img src="images/youtube.jpg" alt="" data-position="center center" /></a>
 							<div class="content">
 								<div class="inner">
 									<h2>Youtube</h2>
-                                    
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cGJyOxLTebg" frameborder="0" allowfullscreen></iframe>
-                                    
+                         
                                     
                               <form action="http://www.youtube.com/results"  >
 									<input name="search_query" type="text"   />
-									<input type="submit" value="Search in Youtube" />           
+                                    <br />
+									<input type="submit" value="Search Video in Youtube" />           
 							   </form>
-                                    
-                                    <form onsubmit="go_get(); return false;" >
- 										<input type="text"  id="yourtextfield" />
- 										<input type="submit" value="Search Playlists in Youtube" />
-									</form>
+                               
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jbtU1rWNbmc" frameborder="0" allowfullscreen></iframe>
+                                   </div>
+                                </div>
+                             </section>     
+                                   
+                                   
+                                   
+                                   
+                        <section>    
+                            <div class="content">
+								<div class="inner">
+                               <form onsubmit="go_get(); return false;" >
+ 									<input type="text"  id="yourtextfield" />
+                                        <br />
+ 									<input type="submit" value="Search Playlists in Youtube" />
+								</form>
 
-									<iframe id="youriframe" width="560" height="315" ></iframe>
+<iframe id="youriframe" width="560" height="315"  src="http://www.youtube.com/embed?listType=search&list=周杰倫" frameborder="0" allowfullscreen></iframe>
                                     
 								
 								</div>
 							</div>
-						</section>
-                        
-                        
-                        
-                        
+						</section>           
 	
 					</section>
                     
                     
-                    
+                    <br />
                     
 
 				<!-- Two -->
 					<section id="two" class="wrapper style3 fade-up">
 						<div class="inner">
 							<h2>What we enjoy</h2>
-							
                             
-                            
-                            
-                            
-                                    
 							<div class="features">
 								<section>
+                                
+                          
 									<span class="icon major fa-code"></span>
-									<h3>清境農場</h3>
-									<p>霧上桃源，體驗清境農場之美，地處海拔1750公尺，空氣清新、林木蒼鬱、綠草如茵，徜徉在寬闊草原與景觀步道，令人流連忘返!</p>
-                                    <p>地址 : 546南投縣仁愛鄉仁和路170號</p>
+									<h3>小慢慢二號店</h3>
+                           <img src="images/Two.jpg" alt="" data-position="center center" width="250" height="200"/>
+                           
+									<p>■ 義大利麵 PSATA <br /> ■ 咖啡 Cafe <br /> ■ 早午餐 Brunch</p>
+                                    <p>營業時間 : <br /> 11:00 - 14:30 <br /> 17:00 - 21:00</p>                                 
+						<a href="#map" onclick="marker1()">地址 : 台中市南區永和一街42號</a>
+                                    
+                                   
 								</section>
                                 
 								<section>
 									<span class="icon major fa-lock"></span>
-									<h3>合歡山</h3>
-									<p>合歡山國家森林遊樂區位於花蓮縣與南投縣交界，海拔高2,300~3,400公尺，面積457.61公頃，是全臺最高之國家森林遊樂區，區內山勢陡峻，山峰與峻谷連綿，為合歡群峰及奇萊山串聯之中樞地區，也是登山活動的最佳地區</p>
-                                    <p>地址 : 546南投縣仁愛鄉</p>
+									<h3>葵花堡點</h3>
+                           <img src="images/Three.jpg" alt="" data-position="center center" width="250" height="200"/>
+									<p>■ 早餐 <br /> ■ 漢堡 蛋餅 吐司 <br /> ■ 飲料 <br /> ■ 沒吃過這家早餐，別說你念過NCHU!!!</p>
+                                    <p>營業時間 : <br /> 6:00 - 12:00</p>
+                                    <a href="#map" onclick="marker2()">地址 : 台中市南區建成路1605號</a>
+                               
 								</section>
+                                
 								<section>
 									<span class="icon major fa-cog"></span>
-									<h3>陽明山國家公園</h3>
-									<p>陽明山國家公園因受到緯度及海拔之影響，季風型氣候非常明顯，且本區地質構造特殊的錐狀或鐘狀火山體和火口湖等，形成火山活動的特殊景觀。</p>
-                                    
-                                    <p>地址 : 112台北市北投區</p>
+									<h3>櫻木拉麵</h3>
+                           <img src="images/Four.jpg" alt="" data-position="center center" width="250" height="200"/>
+									<p>■ 拉麵 <br /> ■ 炸物(推)<br /> ■ 飯類<br /> ■ 涼麵</p>
+                                    <p>營業時間 :<br /> 11:00–14:00 <br />  17:00–20:30 </p>
+                                   
+                                    <a href="#map" onclick="marker3()">地址 : 台中市南區合作街349之1號</a>
 								</section>
+                                
 								<section>
 									<span class="icon major fa-desktop"></span>
-									<h3>玉山國家公園</h3>
-									<p>玉山國家公園面積居於臺灣中央，面積103,121公頃，園內高山崢嶸，以東北亞最高峰、海拔3,952公尺的玉山為首，共涵蓋全臺3分之1的名山峻嶺，連綿不絕的山頭怎麼望也望不完，真不愧是臺灣的屋脊。
-此區不只有高山，還包含古老的地層結構及斷崖、峭壁、峽谷等雄奇的地形，在降雨豐沛、森林繁盛的條件下，成為臺灣三大水系的搖籃。</p>
-									<p>地址 : 55344南投縣水里鄉中山路1段515號</p>
+									<h3>珍餚快餐</h3>
+                                <img src="images/Five.jpg" alt="" data-position="center center" width="250" height="200"/>
+									<p>■ 香煎無骨雞腿飯(大推) <br /> ■ 排骨飯<br /> ■ 咖哩飯<br /> ■ 肉燥飯</p>
+                                    <p>營業時間 : 中午 & 晚上 (很快賣完)</p>
+                                   
+                                     <a href="#map" onclick="marker4()">地址 : 台中市南區台中市南區仁義街81號</a>
 								</section>
 								
 								
@@ -391,9 +960,7 @@ function initAutocomplete() {
 
 			</div>
             
-            <section>
-            
-            </section>
+     
 								
             
 
@@ -409,12 +976,45 @@ function initAutocomplete() {
 				</div>
 			</footer>-->
             
+            <br />
+            
+        
             <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    		<div id="pano"></div>
-    		<div id="map"></div>
+            
+            
+    		<div id="pano" class="inner">
+          
+            </div>
+            
+    		<div id="map" class="inner">
+        
+            
+            </div>
+            
+         <div id="map2" class="inner">
+        
+            
+            </div>
+            
+       
             
             
 
+ 
+ 
+ 
+ <!-- Footer 
+			<footer id="footer" class="wrapper style1-alt">
+            
+            
+            
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>-->
+            
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
